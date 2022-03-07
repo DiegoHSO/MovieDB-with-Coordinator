@@ -62,7 +62,7 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
         }
 
         // We’re still here – it means we’re popping the view controller, so we can check whether it’s a buy view controller
-        if let movieDetailViewController = fromViewController as? ViewController {
+        if let movieDetailViewController = fromViewController as? MainPageViewController {
             // We're popping a buy view controller; end its coordinator
 //            childDidFinish(buyViewController.coordinator)
         }
