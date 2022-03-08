@@ -26,3 +26,4 @@ class MovieTableViewCell: UITableViewCell {
     }
 
 }
+
