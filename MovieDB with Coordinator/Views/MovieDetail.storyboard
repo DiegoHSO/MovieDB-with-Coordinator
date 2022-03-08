@@ -13,7 +13,7 @@
         <!--Details-->
         <scene sceneID="9En-Lh-SDa">
             <objects>
-                <viewController id="s4v-q0-lfC" customClass="MovieDetailViewController" customModule="MovieDB_with_Coordinator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MovieDetailViewController" id="s4v-q0-lfC" customClass="MovieDetailViewController" customModule="MovieDB_with_Coordinator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="T7S-cO-5Jo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

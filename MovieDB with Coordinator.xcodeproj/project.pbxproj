@@ -15,7 +15,6 @@
 		F132A4E427D669A400862DF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F132A4E327D669A400862DF1 /* Assets.xcassets */; };
 		F132A4E727D669A400862DF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F132A4E527D669A400862DF1 /* LaunchScreen.storyboard */; };
 		F132A4EF27D66ABF00862DF1 /* MovieDBAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F132A4EE27D66ABF00862DF1 /* MovieDBAPI.swift */; };
-		F132A4F127D66B3F00862DF1 /* MovieDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F132A4F027D66B3F00862DF1 /* MovieDetailCoordinator.swift */; };
 		F132A4F327D66B5000862DF1 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F132A4F227D66B5000862DF1 /* MainCoordinator.swift */; };
 		F132A4F627D66BA000862DF1 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F132A4F527D66BA000862DF1 /* Coordinator.swift */; };
 		F132A4F827D66D4B00862DF1 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F132A4F727D66D4B00862DF1 /* MainPageViewController.swift */; };
@@ -35,7 +34,6 @@
 		F132A4E627D669A400862DF1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F132A4E827D669A400862DF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F132A4EE27D66ABF00862DF1 /* MovieDBAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDBAPI.swift; sourceTree = "<group>"; };
-		F132A4F027D66B3F00862DF1 /* MovieDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailCoordinator.swift; sourceTree = "<group>"; };
 		F132A4F227D66B5000862DF1 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		F132A4F527D66BA000862DF1 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		F132A4F727D66D4B00862DF1 /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
@@ -90,7 +88,6 @@
 		F132A4F427D66B5500862DF1 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				F132A4F027D66B3F00862DF1 /* MovieDetailCoordinator.swift */,
 				F132A4F227D66B5000862DF1 /* MainCoordinator.swift */,
 				F132A4FD27D66EA300862DF1 /* Storyboarded.swift */,
 				F132A4F527D66BA000862DF1 /* Coordinator.swift */,
@@ -103,8 +100,8 @@
 			children = (
 				F132A4F727D66D4B00862DF1 /* MainPageViewController.swift */,
 				F132A4F927D66DAC00862DF1 /* MovieDetailViewController.swift */,
-				F123823227D697A0006AE436 /* MovieTableViewCell.swift */,
 				F123823427D698CC006AE436 /* TitleTableViewCell.swift */,
+				F123823227D697A0006AE436 /* MovieTableViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -205,7 +202,6 @@
 				F132A4DB27D669A300862DF1 /* AppDelegate.swift in Sources */,
 				F132A4DD27D669A300862DF1 /* SceneDelegate.swift in Sources */,
 				F132A4EF27D66ABF00862DF1 /* MovieDBAPI.swift in Sources */,
-				F132A4F127D66B3F00862DF1 /* MovieDetailCoordinator.swift in Sources */,
 				F132A4FE27D66EA300862DF1 /* Storyboarded.swift in Sources */,
 				F132A4FA27D66DAC00862DF1 /* MovieDetailViewController.swift in Sources */,
 				F132A4F627D66BA000862DF1 /* Coordinator.swift in Sources */,

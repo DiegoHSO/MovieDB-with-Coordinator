@@ -21,8 +21,10 @@ struct Movie: CustomStringConvertible, Equatable {
     static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.id == rhs.id && lhs.title == rhs.title && lhs.description == rhs.description
     }
+    
 }
 
+// MARK: Genre Struct
 struct Genre {
     let id: Int
     let name: String
@@ -47,7 +49,6 @@ struct MovieDBService {
             completionHandler(movies)
         }
     }
-    
     
     func getMoviePoster(url: String, completionHandler: @escaping ((UIImage?) -> Void)) {
         movieDBAPI.requestMoviePoster(url: url) { (poster) in
@@ -76,6 +77,7 @@ struct MovieDBService {
             completionHandler(value)
         }
     }
+    
 }
 
 // MARK: MovieDB Parser
@@ -190,5 +192,5 @@ struct MovieDBAPI {
         }
         .resume()
     }
+    
 }
-

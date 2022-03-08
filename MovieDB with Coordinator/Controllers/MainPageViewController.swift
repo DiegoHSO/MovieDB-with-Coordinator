@@ -10,7 +10,7 @@ import UIKit
 class MainPageViewController: UIViewController, Storyboarded {
 
     weak var coordinator: MainCoordinator?
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+//    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     var popularMoviesPage: Int = 1
     var nowPlayingMoviesPage: Int = 1
@@ -23,7 +23,7 @@ class MainPageViewController: UIViewController, Storyboarded {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.isHidden = self.popularMovies.isEmpty
-                self.activityIndicator.isHidden = !self.popularMovies.isEmpty
+//                self.activityIndicator.isHidden = !self.popularMovies.isEmpty
             }
         }
     }
@@ -32,7 +32,7 @@ class MainPageViewController: UIViewController, Storyboarded {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.isHidden = self.popularMovies.isEmpty
-                self.activityIndicator.isHidden = !self.popularMovies.isEmpty
+//                self.activityIndicator.isHidden = !self.popularMovies.isEmpty
             }
         }
     }
@@ -58,7 +58,7 @@ class MainPageViewController: UIViewController, Storyboarded {
     
     func configure() {
         tableView.isHidden = self.popularMovies.isEmpty && self.nowPlayingMovies.isEmpty
-        activityIndicator.isHidden = !self.popularMovies.isEmpty && !self.nowPlayingMovies.isEmpty
+//        activityIndicator.isHidden = !self.popularMovies.isEmpty && !self.nowPlayingMovies.isEmpty
         
         movieDBService.getTotalPages(url: "https://api.themoviedb.org/3/movie/popular?api_key=2c84bee7ec597369d0b15bc1d8b7d41e&language=en-US") { value in
             self.popularMoviesTotalPages = value
@@ -136,17 +136,6 @@ class MainPageViewController: UIViewController, Storyboarded {
             }
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -184,7 +173,7 @@ extension MainPageViewController: UITableViewDataSource {
                 let movie = filteredPopularMovies[indexPath.row-1]
                 cell.titleLabel.text = movie.title
                 cell.subtitleLabel.text = movie.description
-                cell.rating.setTitle(movie.rating == 0 ? "TBD" : String(movie.rating), for: .normal)
+                cell.rateLabel.text = movie.rating == 0 ? "TBD" : "\(movie.rating)"
                 guard let poster = movie.poster else { return cell }
                 cell.coverImageView.image = poster
                 cell.coverImageView.layer.cornerRadius = 10
@@ -205,7 +194,7 @@ extension MainPageViewController: UITableViewDataSource {
                 let movie = filteredNowPlayingMovies[indexPath.row-1]
                 cell.titleLabel.text = movie.title
                 cell.subtitleLabel.text = movie.description
-                cell.rating.setTitle(movie.rating == 0 ? "TBD" : String(movie.rating), for: .normal)
+                cell.rateLabel.text = movie.rating == 0 ? "TBD" : "\(movie.rating)"
                 guard let poster = movie.poster else { return cell }
                 cell.coverImageView.image = poster
                 cell.coverImageView.layer.cornerRadius = 10
@@ -269,11 +258,12 @@ extension MainPageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             let movie = filteredPopularMovies[indexPath.row-1]
-            // TODO: Send movie through coordinator
+            coordinator?.seeMovieDetail(of: movie)
         }
         else {
-            let movie = filteredNowPlayingMovies[indexPath.row-1]
+            //let movie = filteredNowPlayingMovies[indexPath.row-1]
             // TODO: Send movie through coordinator
+            // coordinator?.seeMovieDetail(of: movie)
         }
         
     }

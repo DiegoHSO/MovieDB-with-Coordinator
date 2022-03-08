@@ -9,23 +9,39 @@ import UIKit
 
 class MovieDetailViewController: UIViewController, Storyboarded {
 
-    weak var coordinator: MovieDetailCoordinator?
+    weak var coordinator: MainCoordinator?
+    var movie: Movie?
+    
+    @IBOutlet weak var coverImage: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var genresLabel: UILabel!
+    @IBOutlet weak var rateLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.configure(movie: movie)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func configure(movie: Movie?) {
+        coverImage.image = movie?.poster
+        titleLabel.text = movie?.title
+        
+        var genresStr: String = ""
+        if let genres = movie?.genres {
+            for genre in genres {
+                if !genresStr.isEmpty {
+                    genresStr += ", " + genre
+                } else {
+                    genresStr = genre
+                }
+            }
+        }
+        
+        genresLabel.text = genresStr
+        rateLabel.text = "\(movie?.rating ?? 0)"
+        descriptionLabel.text = movie?.description
+        
     }
-    */
 
 }
