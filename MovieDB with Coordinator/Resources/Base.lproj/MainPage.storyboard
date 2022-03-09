@@ -127,18 +127,24 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="8Vr-Od-bY9">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="8Vr-Od-bY9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="AtB-Ti-lnu"/>
                             <constraint firstItem="Akl-KZ-Wye" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="NqU-eT-vzR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Akl-KZ-Wye" secondAttribute="trailing" id="OoG-bd-ivR"/>
+                            <constraint firstItem="8Vr-Od-bY9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SBb-9h-4m3"/>
                             <constraint firstItem="Akl-KZ-Wye" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Vgi-h6-bbn"/>
                             <constraint firstAttribute="bottom" secondItem="Akl-KZ-Wye" secondAttribute="bottom" id="z6d-yE-MCg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Movies" largeTitleDisplayMode="always" id="Yu7-fM-InV"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="8Vr-Od-bY9" id="Rts-iP-sSc"/>
                         <outlet property="tableView" destination="Akl-KZ-Wye" id="PaK-Ad-mMB"/>
                     </connections>
                 </viewController>

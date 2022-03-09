@@ -12,12 +12,12 @@ import UIKit
 //
 
 class MainPageViewController: UIViewController, Storyboarded {
-
+    
     //
     // MARK: - Outlets
     //
     @IBOutlet weak var tableView: UITableView!
-//    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     //
     // MARK: - Variables And Properties
@@ -34,8 +34,8 @@ class MainPageViewController: UIViewController, Storyboarded {
     var filteredPopularMovies: [Movie] = [] {
         didSet {
             DispatchQueue.main.async {
-                self.tableView.isHidden = self.popularMovies.isEmpty
-//                self.activityIndicator.isHidden = !self.popularMovies.isEmpty
+                self.tableView.isHidden = self.popularMovies.isEmpty && self.nowPlayingMovies.isEmpty
+                self.activityIndicator.isHidden = (!self.popularMovies.isEmpty) && (!self.nowPlayingMovies.isEmpty)
             }
         }
     }
@@ -43,8 +43,8 @@ class MainPageViewController: UIViewController, Storyboarded {
     var filteredNowPlayingMovies: [Movie] = [] {
         didSet {
             DispatchQueue.main.async {
-                self.tableView.isHidden = self.popularMovies.isEmpty
-//                self.activityIndicator.isHidden = !self.popularMovies.isEmpty
+                self.tableView.isHidden = self.popularMovies.isEmpty && self.nowPlayingMovies.isEmpty
+                self.activityIndicator.isHidden = !self.popularMovies.isEmpty && !self.nowPlayingMovies.isEmpty
             }
         }
     }
@@ -74,7 +74,7 @@ class MainPageViewController: UIViewController, Storyboarded {
     
     func configure() {
         tableView.isHidden = self.popularMovies.isEmpty && self.nowPlayingMovies.isEmpty
-//        activityIndicator.isHidden = !self.popularMovies.isEmpty && !self.nowPlayingMovies.isEmpty
+        activityIndicator.isHidden = !self.popularMovies.isEmpty && !self.nowPlayingMovies.isEmpty
         
         movieDBService.getTotalPages(url: "https://api.themoviedb.org/3/movie/popular?api_key=2c84bee7ec597369d0b15bc1d8b7d41e&language=en-US") { value in
             self.popularMoviesTotalPages = value
@@ -96,10 +96,10 @@ class MainPageViewController: UIViewController, Storyboarded {
                     self.updateData()
                 }
             }
-            //            DispatchQueue.main.async {
-            //                self.updateSearchResults(for: self.navigationItem.searchController!)
-            //                self.moviesTableView.reloadData()
-            //            }
+            DispatchQueue.main.async {
+                self.updateSearchResults(for: self.navigationItem.searchController!)
+                self.tableView.reloadData()
+            }
             self.popularMoviesPage+=1
         }
         
@@ -115,10 +115,10 @@ class MainPageViewController: UIViewController, Storyboarded {
                     self.updateData()
                 }
             }
-            //            DispatchQueue.main.async {
-            //                self.updateSearchResults(for: self.navigationItem.searchController!)
-            //                self.moviesTableView.reloadData()
-            //            }
+            DispatchQueue.main.async {
+                self.updateSearchResults(for: self.navigationItem.searchController!)
+                self.tableView.reloadData()
+            }
             self.nowPlayingMoviesPage+=1
         }
     }
@@ -152,7 +152,7 @@ class MainPageViewController: UIViewController, Storyboarded {
             }
         }
     }
-
+    
 }
 
 //
