@@ -49,6 +49,7 @@ class MainPageViewController: UIViewController, Storyboarded {
         navigationItem.searchController = searchController
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
+        navigationController?.navigationBar.prefersLargeTitles = true
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -157,7 +158,12 @@ extension MainPageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // TODO: Logic for Popular and Now Playing movies (number of rows)
         if section == 0 {
-            return filteredPopularMovies.count+1
+            if filteredPopularMovies.count > 0 {
+                return 3
+            }
+            else {
+                return filteredPopularMovies.count+1
+            }
         }
         else {
             return filteredNowPlayingMovies.count+1
@@ -261,7 +267,7 @@ extension MainPageViewController: UITableViewDelegate {
             coordinator?.seeMovieDetail(of: movie)
         }
         else {
-            //let movie = filteredNowPlayingMovies[indexPath.row-1]
+//            let movie = filteredNowPlayingMovies[indexPath.row-1]
             // TODO: Send movie through coordinator
             // coordinator?.seeMovieDetail(of: movie)
         }

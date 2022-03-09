@@ -25,6 +25,7 @@ class MovieDetailViewController: UIViewController, Storyboarded {
     
     func configure(movie: Movie?) {
         coverImage.image = movie?.poster
+        coverImage.layer.cornerRadius = 10
         titleLabel.text = movie?.title
         
         var genresStr: String = ""

@@ -26,7 +26,7 @@ class MainCoordinator: NSObject, Coordinator {
         let vc = MovieDetailViewController.instantiate()
         vc.coordinator = self
         vc.movie = movie
-        navigationController.pushViewController(vc, animated: false)
+        navigationController.pushViewController(vc, animated: true)
     }
     
 }
