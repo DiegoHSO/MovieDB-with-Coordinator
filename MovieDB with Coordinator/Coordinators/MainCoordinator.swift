@@ -9,13 +9,22 @@ import UIKit
 
 class MainCoordinator: NSObject, Coordinator {
     
+    //
+    // MARK: - Variables And Properties
+    //
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
 
+    //
+    // MARK: - Initialization
+    //
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
-
+    
+    //
+    // MARK: - Class Methods
+    //
     func start() {
         let vc = MainPageViewController.instantiate()
         vc.coordinator = self

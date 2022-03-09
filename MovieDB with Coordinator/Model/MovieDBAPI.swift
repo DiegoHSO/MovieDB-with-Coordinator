@@ -2,112 +2,19 @@
 //  MovieDBAPI.swift
 //  MovieDB with Coordinator
 //
-//  Created by Diego Henrique on 07/03/22.
+//  Created by Diego Henrique on 09/03/22.
 //
 
 import UIKit
 
-// MARK: Movie Struct
-struct Movie: CustomStringConvertible, Equatable {
-    let id: Int
-    let title: String
-    let description: String
-    let rating: Double
-    let posterURL: String
-    var poster: UIImage?
-    var genreIDs: [Int]
-    var genres: [String]?
-    
-    static func == (lhs: Self, rhs: Self) -> Bool {
-        return lhs.id == rhs.id && lhs.title == rhs.title && lhs.description == rhs.description
-    }
-    
-}
-
-// MARK: Genre Struct
-struct Genre {
-    let id: Int
-    let name: String
-}
-
-// MARK: MovieDB Service
-struct MovieDBService {
-    
-    let movieDBParser = MovieDBParser()
-    let movieDBAPI = MovieDBAPI()
-    
-    func getPopularMovies(page: Int, completionHandler: @escaping ([Movie]) -> Void) {
-        movieDBAPI.requestPopularMovies(page: page) { (moviesDictionary) in
-            let movies = moviesDictionary.compactMap{ movieDBParser.parseMovieDictionary(dictionary: $0) }
-            completionHandler(movies)
-        }
-    }
-    
-    func getNowPlayingMovies(page: Int, completionHandler: @escaping ([Movie]) -> Void) {
-        movieDBAPI.requestNowPlayingMovies(page: page) { (moviesDictionary) in
-            let movies = moviesDictionary.compactMap{ movieDBParser.parseMovieDictionary(dictionary: $0) }
-            completionHandler(movies)
-        }
-    }
-    
-    func getMoviePoster(url: String, completionHandler: @escaping ((UIImage?) -> Void)) {
-        movieDBAPI.requestMoviePoster(url: url) { (poster) in
-            completionHandler(poster)
-        }
-    }
-    
-    func getGenres(genreIDs: [Int], completionHandler: @escaping (([String]) -> Void)) {
-        movieDBAPI.requestGenres { (genreDictionary) in
-            let allGenres = genreDictionary.compactMap{ movieDBParser.parseGenreDictionary(dictionary: $0) }
-            
-            var movieGenres: [String] = []
-            for genre in allGenres {
-                for genreID in genreIDs {
-                    if genre.id == genreID {
-                        movieGenres.append(genre.name)
-                    }
-                }
-            }
-            completionHandler(movieGenres)
-        }
-    }
-    
-    func getTotalPages(url: String, completionHandler: @escaping ((Int) -> Void)) {
-        movieDBAPI.requestTotalPages(url: url) { (value) in
-            completionHandler(value)
-        }
-    }
-    
-}
-
-// MARK: MovieDB Parser
-struct MovieDBParser {
-    
-    func parseMovieDictionary(dictionary: [String: Any]) -> Movie? {
-        guard let id = dictionary["id"] as? Int,
-              let title = dictionary["title"] as? String,
-              let description = dictionary["overview"] as? String,
-              let rating = dictionary["vote_average"] as? Double,
-              let posterURL = dictionary["poster_path"] as? String,
-              let genreIDs = dictionary["genre_ids"] as? [Int]
-        else { return nil }
-        
-        return Movie(id: id, title: title, description: description, rating: rating, posterURL: posterURL, genreIDs: genreIDs)
-    }
-    
-    func parseGenreDictionary(dictionary: [String: Any]) -> Genre? {
-        guard let id = dictionary["id"] as? Int,
-              let name = dictionary["name"] as? String
-        else { return nil }
-        
-        return Genre(id: id, name: name)
-    }
-    
-}
-
-// MARK: MovieDB API
+//
+// MARK: - MovieDB API
+//
 struct MovieDBAPI {
     
+    //
+    // MARK: - Instance Methods
+    //
     func requestGenres(completionHandler: @escaping (([[String: Any]]) -> Void)) {
         let url = URL(string: "https://api.themoviedb.org/3/genre/movie/list?api_key=2c84bee7ec597369d0b15bc1d8b7d41e&language=en-US")!
         
@@ -194,3 +101,4 @@ struct MovieDBAPI {
     }
     
 }
+

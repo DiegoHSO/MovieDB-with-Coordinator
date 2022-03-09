@@ -9,9 +9,15 @@ import UIKit
 
 protocol Coordinator: AnyObject {
     
+    //
+    // MARK: - Variables And Properties
+    //
     var childCoordinators: [Coordinator] { get set }
     var navigationController: UINavigationController { get set }
     
+    //
+    // MARK: - Methods
+    //
     func start()
     
 }

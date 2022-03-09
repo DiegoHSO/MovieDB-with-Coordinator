@@ -7,6 +7,10 @@
 
 import UIKit
 
+//
+// MARK: - Storyboarded
+//
+
 protocol Storyboarded {
     static func instantiate() -> Self
 }

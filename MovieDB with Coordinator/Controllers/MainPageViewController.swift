@@ -7,11 +7,23 @@
 
 import UIKit
 
+//
+// MARK: - Main Page View Controller
+//
+
 class MainPageViewController: UIViewController, Storyboarded {
 
-    weak var coordinator: MainCoordinator?
-//    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    //
+    // MARK: - Outlets
+    //
     @IBOutlet weak var tableView: UITableView!
+//    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    //
+    // MARK: - Variables And Properties
+    //
+    weak var coordinator: MainCoordinator?
+    
     var popularMoviesPage: Int = 1
     var nowPlayingMoviesPage: Int = 1
     var popularMoviesTotalPages: Int = 0
@@ -41,6 +53,9 @@ class MainPageViewController: UIViewController, Storyboarded {
     
     var nowPlayingMovies: [Movie] = []
     
+    //
+    // MARK: - View Controller
+    //
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -140,6 +155,10 @@ class MainPageViewController: UIViewController, Storyboarded {
 
 }
 
+//
+// MARK: - Search Results Updating
+//
+
 extension MainPageViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchText = searchController.searchBar.text ?? ""
@@ -148,6 +167,10 @@ extension MainPageViewController: UISearchResultsUpdating {
     }
     
 }
+
+//
+// MARK: - Table View Data Source
+//
 
 extension MainPageViewController: UITableViewDataSource {
     
@@ -171,19 +194,18 @@ extension MainPageViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // TODO: Logic for Popular and Now Playing movies
         if indexPath.section == 0 {
             if indexPath.row != 0 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "contentCell", for: indexPath) as! MovieTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "contentCell", for: indexPath) as? MovieTableViewCell
                 
                 let movie = filteredPopularMovies[indexPath.row-1]
-                cell.titleLabel.text = movie.title
-                cell.subtitleLabel.text = movie.description
-                cell.rateLabel.text = movie.rating == 0 ? "TBD" : "\(movie.rating)"
-                guard let poster = movie.poster else { return cell }
-                cell.coverImageView.image = poster
-                cell.coverImageView.layer.cornerRadius = 10
-                return cell
+                cell?.titleLabel.text = movie.title
+                cell?.subtitleLabel.text = movie.description
+                cell?.rateLabel.text = movie.rating == 0 ? "TBD" : "\(movie.rating)"
+                guard let poster = movie.poster else { return cell ?? UITableViewCell() }
+                cell?.coverImageView.image = poster
+                cell?.coverImageView.layer.cornerRadius = 10
+                return cell ?? UITableViewCell()
             }
             
             else {
@@ -195,16 +217,16 @@ extension MainPageViewController: UITableViewDataSource {
         
         else {
             if indexPath.row != 0 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "contentCell", for: indexPath) as! MovieTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "contentCell", for: indexPath) as? MovieTableViewCell
                 
                 let movie = filteredNowPlayingMovies[indexPath.row-1]
-                cell.titleLabel.text = movie.title
-                cell.subtitleLabel.text = movie.description
-                cell.rateLabel.text = movie.rating == 0 ? "TBD" : "\(movie.rating)"
-                guard let poster = movie.poster else { return cell }
-                cell.coverImageView.image = poster
-                cell.coverImageView.layer.cornerRadius = 10
-                return cell
+                cell?.titleLabel.text = movie.title
+                cell?.subtitleLabel.text = movie.description
+                cell?.rateLabel.text = movie.rating == 0 ? "TBD" : "\(movie.rating)"
+                guard let poster = movie.poster else { return cell ?? UITableViewCell() }
+                cell?.coverImageView.image = poster
+                cell?.coverImageView.layer.cornerRadius = 10
+                return cell ?? UITableViewCell()
             }
             else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "titleCell", for: indexPath)
@@ -260,6 +282,10 @@ extension MainPageViewController: UITableViewDataSource {
     
 }
 
+//
+// MARK: - Table View Delegate
+//
+
 extension MainPageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
@@ -267,9 +293,8 @@ extension MainPageViewController: UITableViewDelegate {
             coordinator?.seeMovieDetail(of: movie)
         }
         else {
-//            let movie = filteredNowPlayingMovies[indexPath.row-1]
-            // TODO: Send movie through coordinator
-            // coordinator?.seeMovieDetail(of: movie)
+            let movie = filteredNowPlayingMovies[indexPath.row-1]
+             coordinator?.seeMovieDetail(of: movie)
         }
         
     }

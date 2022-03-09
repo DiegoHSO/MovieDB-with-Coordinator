@@ -7,17 +7,29 @@
 
 import UIKit
 
+//
+// MARK: - Movie Detail View Controller
+//
 class MovieDetailViewController: UIViewController, Storyboarded {
 
+    //
+    // MARK: - Variables And Properties
+    //
     weak var coordinator: MainCoordinator?
     var movie: Movie?
-    
+
+    //
+    // MARK: - Outlets
+    //
     @IBOutlet weak var coverImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var genresLabel: UILabel!
     @IBOutlet weak var rateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
+    //
+    // MARK: - View Controller
+    //
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configure(movie: movie)

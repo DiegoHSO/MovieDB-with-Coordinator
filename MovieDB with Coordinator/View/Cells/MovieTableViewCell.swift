@@ -7,21 +7,30 @@
 
 import UIKit
 
+//
+// MARK: - Movie Cell
+//
+
 class MovieTableViewCell: UITableViewCell {
     
+    //
+    // MARK: Outlets
+    //
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var rateLabel: UILabel!
     @IBOutlet weak var coverImageView: UIImageView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
+    //
+    // MARK: - Table View Cell
+    //
+    override func prepareForReuse() {
+        super.prepareForReuse()
+      
+        titleLabel.text = nil
+        subtitleLabel.text = nil
+        rateLabel.text = nil
+        coverImageView.image = nil
     }
 
 }
