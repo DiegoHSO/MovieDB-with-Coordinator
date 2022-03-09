@@ -26,13 +26,13 @@ class MainCoordinator: NSObject, Coordinator {
     // MARK: - Class Methods
     //
     func start() {
-        let vc = MainPageViewController.instantiate()
+        let vc = MainPageViewController.instantiate("MainPage")
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
     }
     
     func seeMovieDetail(of movie: Movie) {
-        let vc = MovieDetailViewController.instantiate()
+        let vc = MovieDetailViewController.instantiate("MovieDetail")
         vc.coordinator = self
         vc.movie = movie
         navigationController.pushViewController(vc, animated: true)

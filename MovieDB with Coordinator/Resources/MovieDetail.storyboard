@@ -118,6 +118,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Details" largeTitleDisplayMode="never" id="Uo6-xc-xBB"/>
+                    <connections>
+                        <outlet property="coverImage" destination="6FD-WW-pqf" id="fd4-qJ-IO4"/>
+                        <outlet property="descriptionLabel" destination="Qrn-0t-Ei0" id="S0t-cY-hq6"/>
+                        <outlet property="genresLabel" destination="O1I-QF-dY2" id="Sva-n5-8GX"/>
+                        <outlet property="rateLabel" destination="EbO-K4-Vjr" id="txh-LA-vlu"/>
+                        <outlet property="titleLabel" destination="P1C-Js-onv" id="FLn-xC-6AO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CLP-GH-0wz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

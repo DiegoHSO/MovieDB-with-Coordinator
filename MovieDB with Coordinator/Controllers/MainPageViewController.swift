@@ -197,6 +197,7 @@ extension MainPageViewController: UITableViewDataSource {
         if indexPath.section == 0 {
             if indexPath.row != 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "contentCell", for: indexPath) as? MovieTableViewCell
+                cell?.selectionStyle = .none
                 
                 let movie = filteredPopularMovies[indexPath.row-1]
                 cell?.titleLabel.text = movie.title
@@ -210,6 +211,7 @@ extension MainPageViewController: UITableViewDataSource {
             
             else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "titleCell", for: indexPath)
+                cell.selectionStyle = .none
                 cell.textLabel?.text = "Popular Movies"
                 return cell
             }
@@ -218,6 +220,7 @@ extension MainPageViewController: UITableViewDataSource {
         else {
             if indexPath.row != 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "contentCell", for: indexPath) as? MovieTableViewCell
+                cell?.selectionStyle = .none
                 
                 let movie = filteredNowPlayingMovies[indexPath.row-1]
                 cell?.titleLabel.text = movie.title
@@ -230,6 +233,7 @@ extension MainPageViewController: UITableViewDataSource {
             }
             else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "titleCell", for: indexPath)
+                cell.selectionStyle = .none
                 cell.textLabel?.text = "Now Playing"
                 return cell
             }
@@ -288,13 +292,16 @@ extension MainPageViewController: UITableViewDataSource {
 
 extension MainPageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            let movie = filteredPopularMovies[indexPath.row-1]
-            coordinator?.seeMovieDetail(of: movie)
-        }
-        else {
-            let movie = filteredNowPlayingMovies[indexPath.row-1]
-             coordinator?.seeMovieDetail(of: movie)
+        
+        if indexPath.row != 0 {
+            if indexPath.section == 0 {
+                let movie = filteredPopularMovies[indexPath.row-1]
+                coordinator?.seeMovieDetail(of: movie)
+            }
+            else {
+                let movie = filteredNowPlayingMovies[indexPath.row-1]
+                coordinator?.seeMovieDetail(of: movie)
+            }
         }
         
     }
