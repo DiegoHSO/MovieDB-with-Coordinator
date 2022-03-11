@@ -181,7 +181,7 @@ extension MainPageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // TODO: Logic for Popular and Now Playing movies (number of rows)
         if section == 0 {
-            if filteredPopularMovies.count > 0 {
+            if filteredPopularMovies.count > 0 && self.navigationItem.searchController?.searchBar.text == "" {
                 return 3
             }
             else {
